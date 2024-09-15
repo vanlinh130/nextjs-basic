@@ -1,15 +1,23 @@
-import Card from "@/app/Card/Card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-items-center gap-3 px-10">
-      {/* <Button className="px-6 text-mini" variant='outline'>Văn Linh</Button>
-      <Input  type="email" placeholder="Email"   /> */}
-      <h1 className="text-red-500 font-sans text-4xl">Văn Linh của tôiii</h1>
-
-      {/* <Card /> */}
-    </div>
+    <main>
+      <div className="w-[700px] h-[700px] bg-red-300">
+        {/* <Image src='/images/em.jpg' alt="em" width={200} height={200} quality={100}/> */}
+          <Image 
+                src='https://images.pexels.com/photos/1661179/pexels-photo-1661179.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' 
+               alt="pexels" 
+               width={300} 
+               height={200} 
+               quality={100}
+               priority 
+               fill
+               style={{
+                objectFit: 'cover', // cover, contain, none
+              }}
+            />
+      </div>
+    </main>
   );
 }
