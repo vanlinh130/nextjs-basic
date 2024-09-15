@@ -1,23 +1,22 @@
-import Image from "next/image";
 
 export default function Home() {
   return (
-    <main>
-      <div className="w-[700px] h-[700px] bg-red-300">
-        {/* <Image src='/images/em.jpg' alt="em" width={200} height={200} quality={100}/> */}
-          <Image 
-                src='https://images.pexels.com/photos/1661179/pexels-photo-1661179.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' 
-               alt="pexels" 
-               width={300} 
-               height={200} 
-               quality={100}
-               priority 
-               fill
-               style={{
-                objectFit: 'cover', // cover, contain, none
-              }}
-            />
-      </div>
+    <main className="flex justify-center gap-4 mt-5">
+      <video width="500" height="240" controls preload="none" loop >
+        <source src="/videos/flower.webm" type="video/mp4"  />
+      </video>
+
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/gfU1iZnjRZM"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+      ></iframe>
+      
+      <iframe width="1280" height="720" src="https://www.youtube.com/embed/4u856utdR94" frameBorder="0" allowFullScreen></iframe>
+
     </main>
   );
 }
