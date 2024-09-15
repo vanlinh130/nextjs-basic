@@ -5,11 +5,11 @@ import { Input } from "@/components/ui/input";
 export default function Home() {
   return (
     <div className="flex flex-col items-center justify-items-center gap-3 px-10">
-      <Button className="px-6 text-mini" variant='outline'>Văn Linh</Button>
-      <Input  type="email" placeholder="Email"   />
-      <h1>dfdf</h1>
+      {/* <Button className="px-6 text-mini" variant='outline'>Văn Linh</Button>
+      <Input  type="email" placeholder="Email"   /> */}
+      <h1 className="text-red-500 font-sans text-4xl">Văn Linh của tôiii</h1>
 
-      <Card />
+      {/* <Card /> */}
     </div>
   );
 }
