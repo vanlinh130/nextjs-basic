@@ -1,12 +1,11 @@
-import { WebVitals } from './_components/web-vitals'
- 
-export default function Layout({ children }) {
+import React from 'react'
+import Link from 'next/link';
+
+export default function page() {
   return (
-    <html>
-      <body>
-        <WebVitals />
-        {children}
-      </body>
-    </html>
+    <div>
+      <h1>Home</h1>
+      <Link href="/dashboard">Dashboard</Link>
+    </div>
   )
 }

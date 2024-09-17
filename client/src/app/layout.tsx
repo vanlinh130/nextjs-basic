@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
-
 const robotoSans = localFont({
   src: "./fonts/Roboto-Regular.ttf",
   variable: "--font-roboto-sans",
