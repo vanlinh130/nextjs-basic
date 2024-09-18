@@ -1,0 +1,9 @@
+{
+    "server-component": {
+        "welcome": "Xin chào"
+    },
+    "counter": {
+        "increment": "Zuwachs",
+        "decrement": "Dekrementieren"
+    }
+}
