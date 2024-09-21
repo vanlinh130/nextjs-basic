@@ -4,6 +4,8 @@ import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import Header from '@/components/header';
 import { Toaster } from '@/components/ui/toaster';
+import AppProvider from '@/AppProvider';
+import { cookies } from 'next/headers';
 
 const geistSans = localFont({
     src: './fonts/GeistVF.woff',
@@ -26,13 +28,17 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+    const cookieStore = cookies();
+    const sessionToken = cookieStore.get('sessionToken');
+    console.log('RootLayout', cookieStore.get('sessionToken'));
+
     return (
         <html lang="en" suppressHydrationWarning>
             <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
                 <Toaster />
                 <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
                     <Header />
-                    {children}
+                    <AppProvider inititalSessionToken={sessionToken?.value}>{children}</AppProvider>
                 </ThemeProvider>
             </body>
         </html>
