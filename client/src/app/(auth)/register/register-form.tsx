@@ -7,13 +7,15 @@ import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { RegisterBody, RegisterBodyType } from '@/schemaValidations/auth.schema';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import envConfig from '@/config';
 import authApiRequest from '@/apiRequests/auth';
 import { useToast } from '@/hooks/use-toast';
 import { useRouter } from 'next/navigation';
+import { handleErrorApi } from '@/lib/utils';
 
 export default function RegisterForm() {
+    const [loading, setLoading] = useState(false);
     const { toast } = useToast();
     const router = useRouter();
     useEffect(() => {
@@ -33,6 +35,8 @@ export default function RegisterForm() {
 
     // 2. Define a submit handler.
     async function onSubmit(values: RegisterBodyType) {
+        if (loading) return;
+        setLoading(true);
         try {
             const result = await authApiRequest.register(values);
             toast({
@@ -41,25 +45,12 @@ export default function RegisterForm() {
             await authApiRequest.auth({ sessionToken: result.payload.data.token });
             router.push('/me');
         } catch (error: any) {
-            const errors = error.payload.errors as {
-                field: string;
-                message: string;
-            }[];
-            const status = error.status as number;
-            if (status === 422) {
-                errors.forEach((error) => {
-                    form.setError(error.field as 'email' | 'password', {
-                        type: 'server',
-                        message: error.message,
-                    });
-                });
-            } else {
-                toast({
-                    title: 'Lỗi',
-                    description: error.payload.message,
-                    variant: 'destructive',
-                });
-            }
+            handleErrorApi({
+                error,
+                setError: form.setError,
+            });
+        } finally {
+            setLoading(false);
         }
     }
 
