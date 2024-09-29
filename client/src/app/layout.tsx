@@ -6,6 +6,7 @@ import Header from '@/components/header';
 import { Toaster } from '@/components/ui/toaster';
 import AppProvider from '@/AppProvider';
 import { cookies } from 'next/headers';
+import SlideSession from '@/components/slide-session';
 
 const geistSans = localFont({
     src: './fonts/GeistVF.woff',
@@ -37,7 +38,9 @@ export default function RootLayout({
                 <Toaster />
                 <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
                     <Header />
-                    <AppProvider inititalSessionToken={sessionToken?.value}>{children}</AppProvider>
+                    <AppProvider inititalSessionToken={sessionToken?.value}>
+                        {children} <SlideSession />
+                    </AppProvider>
                 </ThemeProvider>
             </body>
         </html>
