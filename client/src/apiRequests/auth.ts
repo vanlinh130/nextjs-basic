@@ -19,12 +19,13 @@ const authApiRequest = {
                 },
             },
         ),
-    logoutFromNextClientToNextServer: () =>
+    logoutFromNextClientToNextServer: (force?: boolean | undefined, signal?: AbortSignal | undefined) =>
         http.post<MessageResType>(
             '/api/auth/logout',
-            {},
+            { force },
             {
                 baseUrl: '',
+                signal,
             },
         ),
 };
