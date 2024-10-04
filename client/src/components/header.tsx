@@ -8,6 +8,9 @@ export default function Header() {
         <div>
             <ul>
                 <li>
+                    <Link href="/product/add">Thêm sản phẩm</Link>
+                </li>
+                <li>
                     <Link href="/login">Đăng nhập</Link>
                 </li>
                 <li>
