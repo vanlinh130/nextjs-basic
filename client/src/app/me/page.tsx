@@ -1,17 +1,19 @@
 import accountApiRequest from '@/apiRequests/account';
-import Profile from '@/app/me/profile';
+import ProfileForm from '@/app/me/profile-form';
 import { cookies } from 'next/headers';
 
 export default async function MyProfile() {
     const cookieStore = cookies();
     const sessionToken = cookieStore.get('sessionToken');
+    // Vì dùng cookie nên api này không được cached trên server
+
     const result = await accountApiRequest.me(sessionToken?.value ?? '');
 
     return (
         <div>
             <h1>Profile</h1>
-            <div>Xin chào {result.payload.data?.name}</div>
-            {/* <Profile /> */}
+            <h2>{result.payload?.data.name}</h2>
+            <ProfileForm profile={result.payload.data} />
         </div>
     );
 }
