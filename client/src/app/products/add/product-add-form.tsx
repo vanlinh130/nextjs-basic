@@ -15,6 +15,7 @@ import { Textarea } from '@/components/ui/textarea';
 import Image from 'next/image';
 
 const ProductAddForm = () => {
+
     const [file, setFile] = useState<File | null>(null);
     const inputRef = useRef<HTMLInputElement | null>(null);
     const [loading, setLoading] = useState(false);
@@ -46,7 +47,7 @@ const ProductAddForm = () => {
             toast({
                 description: result.payload.message,
             });
-            // router.push('/products');
+            router.push('/products');
         } catch (error: any) {
             handleErrorApi({
                 error,
