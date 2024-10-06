@@ -1,4 +1,5 @@
 import http from '@/lib/http';
+import { MessageResType } from '@/schemaValidations/common.schema';
 import {
     CreateProductBodyType,
     ProductListResType,
@@ -22,6 +23,7 @@ const productApiRequest = {
             message: string;
             data: string;
         }>('/media/upload', body),
+        delete: (id: number) => http.delete<MessageResType>(`/products/${id}`)
 };
 
 export default productApiRequest;

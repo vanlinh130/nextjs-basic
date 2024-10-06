@@ -7,9 +7,12 @@ export default async function ProductEdit({ params }: { params: { id: string } }
         product = payload.data;
     } catch (error) {}
     return (
-        <div>
-            {!product && <div>Không tìm thấy sản phẩm</div>}
-            {product && <ProductAddForm product={product} />}
+        <div className="flex items-center justify-center">
+            <div className="w-[40%]">
+                <h1 className="text-[24px] font-bold text-center py-2">Cập nhật sản phẩm</h1>
+                {!product && <div>Không tìm thấy sản phẩm</div>}
+                {product && <ProductAddForm product={product} />}
+            </div>
         </div>
     );
 }
