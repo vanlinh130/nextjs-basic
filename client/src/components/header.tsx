@@ -6,7 +6,7 @@ import { AccountResType } from '@/schemaValidations/account.schema';
 
 export default async function Header({ user }: { user: AccountResType['data'] | null }) {
     return (
-        <div>
+        <div className="flex space-x-4">
             <ul className="flex space-x-4">
                 <li>
                     <Link href="/products">Sản phẩm</Link>
