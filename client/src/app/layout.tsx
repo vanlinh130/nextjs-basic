@@ -9,6 +9,7 @@ import SlideSession from '@/components/slide-session';
 import AppProvider from '@/app/app-provider';
 import accountApiRequest from '@/apiRequests/account';
 import { AccountResType } from '@/schemaValidations/account.schema';
+import { baseOpenGraph } from '@/app/shared-metadata';
 
 const geistSans = localFont({
     src: './fonts/GeistVF.woff',
@@ -27,6 +28,7 @@ export const metadata: Metadata = {
         default: 'Productic',
     },
     description: 'Được tạo bởi Linh dev',
+    openGraph: baseOpenGraph,
 };
 
 export default async function RootLayout({
