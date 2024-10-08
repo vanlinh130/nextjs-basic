@@ -1,11 +1,17 @@
 import productApiRequest from '@/apiRequests/product';
 import DeleteProduct from '@/app/products/_components/delete-product';
 import { Button } from '@/components/ui/button';
+import { Metadata } from 'next';
 import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default async function getServerSideProps() {
+export const metadata: Metadata = {
+    title: 'Danh sách sản phẩm',
+    description: 'Danh sách sản phẩm của Productic, được tạo bởi Linh dev',
+};
+
+export default async function ProductListPage() {
     const cookieStore = cookies();
     const sessionToken = cookieStore.get('sessionToken');
     const isAuthenticated = Boolean(sessionToken);
