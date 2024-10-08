@@ -11,6 +11,9 @@ export default async function Header({ user }: { user: AccountResType['data'] | 
                 <li>
                     <Link href="/products">Sản phẩm</Link>
                 </li>
+                <li>
+                    <ButtonLogout />
+                </li>
                 {user ? (
                     <>
                         <li>

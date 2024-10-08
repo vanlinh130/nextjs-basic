@@ -4,10 +4,8 @@ import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import Header from '@/components/header';
 import { Toaster } from '@/components/ui/toaster';
-import { cookies } from 'next/headers';
 import SlideSession from '@/components/slide-session';
 import AppProvider from '@/app/app-provider';
-import accountApiRequest from '@/apiRequests/account';
 import { AccountResType } from '@/schemaValidations/account.schema';
 import { baseOpenGraph } from '@/app/shared-metadata';
 
@@ -36,21 +34,14 @@ export default async function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    const cookieStore = cookies();
-    const sessionToken = cookieStore.get('sessionToken');
-
     let user: AccountResType['data'] | null = null;
-    if (sessionToken) {
-        const data = await accountApiRequest.me(sessionToken.value);
-        user = data.payload.data;
-    }
 
     return (
         <html lang="en" suppressHydrationWarning>
             <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
                 <Toaster />
                 <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-                    <AppProvider inititalSessionToken={sessionToken?.value} user={user}>
+                    <AppProvider user={user}>
                         <Header user={user} />
                         {children} <SlideSession />
                     </AppProvider>
